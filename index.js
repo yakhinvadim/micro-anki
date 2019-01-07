@@ -4,8 +4,8 @@ const microCors = require('micro-cors');
 
 const cors = microCors({allowMethods: ['POST']});
 
-async function saveAnki(deckName, cards) {
-  const apkg = new AnkiExport(deckName);
+async function saveAnki(deckName, cards, template) {
+  const apkg = new AnkiExport(deckName, template);
   cards.forEach(card => apkg.addCard(card.front, card.back));
   const zip = await apkg.save();
 
@@ -20,7 +20,7 @@ async function handleRequest(req, res) {
   }
 
   const deckName = data.deckName ? data.deckName : 'micro-anki-deck';
-  const zip = await saveAnki(deckName, data.cards);
+  const zip = await saveAnki(deckName, data.cards, data.template);
 
   res.setHeader(
     'Content-Disposition',
