@@ -1,6 +1,7 @@
 {
+  "version": 1,
   "name": "micro-anki",
-  "alias": "micro-anki",
+  "alias": "micro-anki-yakhinvadim",
   "env": {
     "NODE_ENV": "production"
   }
